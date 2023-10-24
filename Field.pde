@@ -75,6 +75,7 @@ class Field {
       setHue(p, fac,alpha);
       point(p.x, p.y);
     }
+    z2+=0.001;
   }
 
   void display(int alpha) {
@@ -111,13 +112,14 @@ class Field {
   }
   float findNoise(PVector p, float fac) {
     float k = (float) opnoise.eval(p.x*fac, p.y*fac, z);
-    return map(k, -1, 1, -PI/2, PI/2);
+    return map(k, -1, 1, 0, TAU);
   }
   void resetDir() {
     long seed = (long)random(-1000000, 1000000);
     opnoise = new OpenSimplexNoise(seed);
     xDir = 1;
     yDir = 1;
+   
     float k= random(-1, 1);
     if (k < 0) xDir = -1;
 
